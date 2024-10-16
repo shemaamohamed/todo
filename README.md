@@ -5,7 +5,6 @@ The To-Do List website is a user-friendly web application designed to help indiv
 - **Edit Tasks:** Modify existing tasks to keep your list up to date.
 - **Delete Tasks:** Remove tasks that are no longer needed.
 - **Mark as Completed:** Check off tasks once they're done.
-- **Date Feature:** Set deadlines for tasks to help with time management.
 
 ## Technologies Used
 - **Frontend:**
@@ -13,3 +12,5 @@ The To-Do List website is a user-friendly web application designed to help indiv
   - CSS3
   - JavaScript (ES6)
   - React.js
+  - React Bootstrap
+  - Material UI 
