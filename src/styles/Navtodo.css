@@ -1,0 +1,86 @@
+.navtodo{
+    background-color: rgb(218,215,229);
+
+
+}
+.navtodo .brand{
+    font-family: "Playwrite GB S", cursive !important;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: italic !important;
+    background: linear-gradient(to right, #BF78BB, #BF78BB);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: rgb(111,171,230);
+    font-size: 15px;
+    margin-top: 1px;
+  
+}
+.navtodo a{
+    color:rgb(242,155,117);
+    margin-right: 30px;
+    font-size: 1.04em;
+   font-weight: 600;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+
+}
+.navtodo a:hover{
+    color: rgb(111,171,230);
+  }
+.navtodo .active {
+    color: rgb(111,171,230) !important; 
+    text-decoration: underline;
+    font-weight: bold;
+    text-underline-offset: 13px;
+    text-decoration-thickness: 3px;
+    
+  }
+  .todolist{
+    background-color: rgb(111,171,230);
+    padding: 20px;
+    margin-bottom: 50px;
+    border-radius: 10px;
+    border: 1px solid white;
+    height: 75vh;
+   
+    overflow: auto;
+    box-shadow: 3px 3px 3px 3px aliceblue;
+    margin-top: 20px;
+    color: rgb(218,215,229);
+
+  }
+  .todolist h1{
+    color: rgb(255, 218, 255);
+    font-style: italic;
+    font-family: "Playwrite GB S", cursive;
+    margin: auto;
+  }
+  .todolist li{
+    list-style: none;
+    background-color:rgb(255, 218, 255);
+    padding: 9px;
+    border-radius: 10px;
+    color:gray;
+    font-weight: 600;
+    overflow: auto;
+    text-wrap:wrap;
+  }
+  .datetodo{
+    text-align: end;
+    font-weight: 500;
+    font-size: small;
+  }
+  .removetodo{
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    padding: 0px;
+    background-color: red;
+    border: none;
+    border-radius: 50%;
+    margin-bottom: 18px;
+  }
+  .removetodo:hover{
+    background-color:rgb(242,155,117) ;
+  }
