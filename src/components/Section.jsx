@@ -19,16 +19,8 @@ const Section = () => {
           </div>
         </Col>
 
-        {/* Right Side: Image */}
         <Col md={5} className="text-center hero-image">
-          <img src={planner}
-           alt="Hero Image" 
-           className="img-fluid" 
-             style={{
-              borderRadius: '10px',
-              boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)',
-            }}
-          />
+          <img src={planner} alt="A planner with notes and reminders" className="img-fluid" style={{borderRadius: '10px',boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)',}}/>
         </Col>
       </Row>
     </Container>

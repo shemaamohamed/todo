@@ -31,7 +31,7 @@ function Todolist() {
         const createdAt = Date.now();
         const createdAtDate = new Date(createdAt);
         const formattedDate = createdAtDate.toLocaleString();
-      const existingTask =  todoList.find((item) => {
+        const existingTask =  todoList.find(item => {
             if (item.text === todo) {
                 toast.error('Task Already Exist', {
                     style: {
@@ -47,7 +47,8 @@ function Todolist() {
                  return true;
 
             }
-        })
+            return false;
+        });
         if (todo.trim() !== "" && !existingTask) {
             setTodoList([...todoList, { text: todo, done: false, date: formattedDate }]); 
             setToDo("");  
@@ -91,7 +92,7 @@ function Todolist() {
         setCurrentIndex(null); 
     };
     const editTodo = (data) => {
-        const existingTask =  todoList.find((item) => {
+        const existingTask =  todoList.find(item => {
             if (item.text === data) {
                 toast.error('Task Already Exist', {
                     style: {
@@ -107,7 +108,8 @@ function Todolist() {
                  return true;
 
             }
-        })
+            return false;
+        });
 
         if(data.trim() !== "" && !existingTask){
             const updatedList = todoList.map((item, i) =>
