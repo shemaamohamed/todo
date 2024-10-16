@@ -9,16 +9,16 @@ import Stack from "react-bootstrap/Stack";
 import Checkbox from "./components/Checkbox";
 import { toast } from 'react-hot-toast';
 import Checkremove from "./components/Checkremove";
-
+import EditTask from "./components/EditTask";
 function Todolist() {
-    const [open, setOpen] = useState(false);
-    const [currentIndex, setCurrentIndex] = useState(null); // State for current index
+    const [openremove, setOpenRemove] = useState(false);
+    const [openedit, setOpenEdit] = useState(false);
+    const [currentIndex, setCurrentIndex] = useState(null); 
     const [todo, setToDo] = useState(""); 
     const [todoList, setTodoList] = useState(() => {
         const savedTasks = localStorage.getItem('todo');
         return savedTasks ? JSON.parse(savedTasks) : [];
     });
-
     useEffect(() => {
         localStorage.setItem('todo', JSON.stringify(todoList)); 
     }, [todoList]); 
@@ -26,16 +26,32 @@ function Todolist() {
     const handleChange = (e) => {
         setToDo(e.target.value); 
     };
-
     const submitTodo = (e) => {
         e.preventDefault(); 
         const createdAt = Date.now();
         const createdAtDate = new Date(createdAt);
         const formattedDate = createdAtDate.toLocaleString();
-        if (todo.trim() !== "") {
+      const existingTask =  todoList.find((item) => {
+            if (item.text === todo) {
+                toast.error('Task Already Exist', {
+                    style: {
+                        border: '1px solid rgb(111, 171, 230)',
+                        padding: '16px',
+                        color: 'rgb(111, 171, 230)',
+                    },
+                    iconTheme: {
+                        primary: 'rgb(111, 171, 230)',
+                        secondary: '#FFFAEE',
+                    },
+                });
+                 return true;
+
+            }
+        })
+        if (todo.trim() !== "" && !existingTask) {
             setTodoList([...todoList, { text: todo, done: false, date: formattedDate }]); 
             setToDo("");  
-        } else {
+        } else if(todo.trim() === "") {
             toast.error('Please Enter Your Task ', {
                 style: {
                   border: '1px solid rgb(111,171,230)',
@@ -49,7 +65,6 @@ function Todolist() {
             });
         }
     };
-
     const toggleTaskDone = (index) => {
         const updatedList = todoList.map((item, i) => 
             i === index ? { ...item, done: !item.done } : item  
@@ -69,21 +84,65 @@ function Todolist() {
             });
         }
     };
-
     const removeTodo = (index) => {
         const updatedList = todoList.filter((_, i) => i !== index);
         setTodoList(updatedList);
         handleClose();
-        setCurrentIndex(null); // Reset the current index after removal
+        setCurrentIndex(null); 
     };
+    const editTodo = (data) => {
+        const existingTask =  todoList.find((item) => {
+            if (item.text === data) {
+                toast.error('Task Already Exist', {
+                    style: {
+                        border: '1px solid rgb(111, 171, 230)',
+                        padding: '16px',
+                        color: 'rgb(111, 171, 230)',
+                    },
+                    iconTheme: {
+                        primary: 'rgb(111, 171, 230)',
+                        secondary: '#FFFAEE',
+                    },
+                });
+                 return true;
 
+            }
+        })
+
+        if(data.trim() !== "" && !existingTask){
+            const updatedList = todoList.map((item, i) =>
+                i === currentIndex ? { ...item, text: data } : item
+            );
+            setTodoList(updatedList);
+            handleClose();
+            setCurrentIndex(null);
+        }else if(data.trim() === ""){
+            toast.error('Please Enter Your Task ', {
+                style: {
+                  border: '1px solid rgb(111, 171, 230)',
+                  padding: '16px',
+                  color: 'rgb(111, 171, 230)',
+                },
+                iconTheme: {
+                  primary: 'rgb(111, 171, 230)',
+                  secondary: '#FFFAEE',
+                },
+            });
+        }
+        
+    };
     const handleClickOpen = (index) => {
-        setCurrentIndex(index); // Set the current index
-        setOpen(true);
+        setCurrentIndex(index); 
+        setOpenRemove(true);
+    };
+    const handleClickOpenedit = (index) => {
+        setCurrentIndex(index); 
+        setOpenEdit(true);
     };
 
     const handleClose = () => {
-        setOpen(false);
+        setOpenRemove(false);
+        setOpenEdit(false);
     };
 
     return (
@@ -119,6 +178,8 @@ function Todolist() {
                                         justifyContent: 'space-between', 
                                         alignItems: 'center', 
                                     }}
+                                    
+
                                 >
                                     <div style={{ display: 'flex', alignItems: 'center' }}>
                                         <Checkbox 
@@ -126,7 +187,10 @@ function Todolist() {
                                             onChange={() => toggleTaskDone(index)}  
                                             id={`checkbox-${index}`}
                                         />
-                                        <span>{todo.text}</span>
+                                        <span onClick={(e) => {
+                                            e.stopPropagation();
+                                        handleClickOpenedit(index); 
+                                    }}>{todo.text}</span>
                                     </div>
                                     <Button 
                                         className="removetodo"
@@ -140,10 +204,18 @@ function Todolist() {
                                     </Button>
                                     <Checkremove 
                                         name={currentIndex !== null ? todoList[currentIndex].text : ''} 
-                                        open={open} 
+                                        open={openremove} 
                                         onClose={handleClose} 
                                         remove={() => removeTodo(currentIndex)} 
                                     />
+                                    <EditTask  
+                                        name={currentIndex !== null ? todoList[currentIndex].text : ''} 
+                                        open={openedit} 
+                                        onClose={handleClose} 
+                                        edit={(data)=>editTodo(data)} 
+
+                                        />
+
                                 </li>
                                 <span className="datetodo"> {todo.date}</span>
 

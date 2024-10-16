@@ -1,6 +1,7 @@
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import '../styles/section.css';
 import planner  from '../assets/pexels-tara-winstead-8386681.jpg'
+import { Link } from 'react-router-dom';
 const Section = () => {
   return (
     <Container fluid className="hero-section " >
@@ -11,7 +12,7 @@ const Section = () => {
             Plan your day and stay on top of your tasks with our easy-to-use time planner.
           </p>
           <div className="hero-buttons">
-            <Button variant="primary" size="lg" className="me-3">
+            <Button as={Link} to="/todolist" variant="primary" size="lg" className="me-3">
               Get Started for Free
             </Button>
            
@@ -27,7 +28,6 @@ const Section = () => {
               borderRadius: '10px',
               boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)',
             }}
-
           />
         </Col>
       </Row>

@@ -3,7 +3,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import './styles/Navtodo.css'
 import Logo from "./assets/reshot-icon-wedding-planner-GUY54S937F.svg"
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 
 
