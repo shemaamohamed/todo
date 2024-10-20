@@ -189,10 +189,10 @@ function Todolist() {
                                             onChange={() => toggleTaskDone(index)}  
                                             id={`checkbox-${index}`}
                                         />
-                                        <span onClick={(e) => {
+                                        <div onClick={(e) => {
                                             e.stopPropagation();
                                         handleClickOpenedit(index); 
-                                    }}>{todo.text}</span>
+                                    }}>{todo.text}</div>
                                     </div>
                                     <Button 
                                         className="removetodo"

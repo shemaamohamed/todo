@@ -7,6 +7,8 @@ import { Route } from 'react-router-dom';
 import Todolist from './Todolist';
 import { Toaster } from 'react-hot-toast';
 import Section from './components/Section';
+import { Analytics } from '@vercel/analytics/react';
+
 
 function App() {
   return (
@@ -19,6 +21,7 @@ function App() {
     </Routes>
     <Toaster/>
     </BrowserRouter>
+    <Analytics />
     </div>
     
     
